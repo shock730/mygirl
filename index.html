@@ -1,0 +1,116 @@
+curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=GEMINI_API_KEY" \
+-H 'Content-Type: application/json' \
+-X POST \
+-d '{
+  "contents": [{
+    "parts":[{"text": "Explain how AI works"}]
+    }]
+   }'
+content_copydownload
+
+AIzaSyCwuemHo7c6cc9tra07I1-MrqXEBIfUqRw
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>超兇女朋友機器人 💢</title>
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: #fff;
+      font-family: "微軟正黑體", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #ff4d4d;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    textarea, input {
+      width: 90%;
+      max-width: 600px;
+      margin: 10px 0;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #e60000;
+    }
+    #response {
+      margin-top: 30px;
+      background-color: #2a2a2a;
+      border-left: 4px solid #ff4d4d;
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+      font-size: 18px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>超兇女友機器人 😡❤️</h1>
+
+  <textarea id="userInput" rows="4" placeholder="快說點話，讓我兇你。"></textarea>
+  <button onclick="sendMessage()">送出 ✉️</button>
+
+  <div id="response">她的回覆會出現在這裡，準備好被罵哭吧。</div>
+
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById("userInput").value;
+      const responseDiv = document.getElementById("response");
+
+      if (!input.trim()) {
+        responseDiv.innerText = "你不講話我怎麼罵你？廢物。";
+        return;
+      }
+
+      responseDiv.innerText = "等我一下，我正準備開罵...";
+
+      const payload = {
+        contents: [{
+          parts: [{
+            text: `你是一個毒舌、兇狠但又愛男友的女朋友。請用火爆的語氣、加上一點情感，兇他一句來回應這句話：「${input}」`
+          }]
+        }]
+      };
+
+      try {
+        const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCwuemHo7c6cc9tra07I1-MrqXEBIfUqRw", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        responseDiv.innerText = reply || "我現在太生氣了，懶得理你。👿";
+      } catch (err) {
+        responseDiv.innerText = "出錯了，你連這都搞不定，真是廢到笑。";
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>
